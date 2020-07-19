@@ -16,23 +16,20 @@ namespace BindingFunApp
     public static class MyHttpTrigger
     {
         [FunctionName("MyHttpTrigger")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log, [Table("Products", Connection = "MyAzureStorage")] CloudTable cloudTable, [Queue("queueproduct", Connection = "MyAzureStorage")] CloudQueue cloudQueue)
+        [return: Table("Products", Connection = "MyAzureStorage")]
+        public static async Task<Product> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            ILogger log, [Queue("queueproduct", Connection = "MyAzureStorage")] CloudQueue cloudQueue)
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             Product newProduct = JsonConvert.DeserializeObject<Product>(requestBody);
-
-            TableOperation operation = TableOperation.Insert(newProduct);
-
-            await cloudTable.ExecuteAsync(operation);
 
             var productString = JsonConvert.SerializeObject(newProduct);
 
             CloudQueueMessage cloudQueueMessage = new CloudQueueMessage(productString);
             await cloudQueue.AddMessageAsync(cloudQueueMessage);
 
-            return new OkObjectResult(newProduct);
+            return newProduct;
         }
     }
 }
