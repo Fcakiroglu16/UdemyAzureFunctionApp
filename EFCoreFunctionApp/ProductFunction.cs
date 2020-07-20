@@ -7,11 +7,19 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using EFCoreFunctionApp.Models;
 
 namespace EFCoreFunctionApp
 {
-    public static class Function1
+    public class ProductFunction
     {
+        private readonly AppDbContext _appDbContext;
+
+        public ProductFunction(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+
         [FunctionName("Function1")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
