@@ -51,5 +51,23 @@ namespace EFCoreFunctionApp
 
             return new OkObjectResult(newProduct);
         }
+
+        [FunctionName("UpdateProducts")]
+        public async Task<IActionResult> UpdateProducts(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = Route)] HttpRequest req,
+    ILogger log)
+        {
+            log.LogInformation("Ürün Güncelle");
+
+            string body = await new StreamReader(req.Body).ReadToEndAsync();
+
+            var newProduct = JsonConvert.DeserializeObject<Product>(body);
+
+            _appDbContext.Products.Update(newProduct);
+
+            await _appDbContext.SaveChangesAsync();
+
+            return new NoContentResult();
+        }
     }
 }
