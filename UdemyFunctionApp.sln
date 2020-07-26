@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionTimerTriggerApp", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionBlobTriggerApp", "FunctionBlobTriggerApp\FunctionBlobTriggerApp.csproj", "{75FAE67F-6FF4-4017-AF05-D2A0ABF1AD74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionQueueTriggerApp", "FunctionQueueTriggerApp\FunctionQueueTriggerApp.csproj", "{16A59EFC-70F6-44DB-BDE5-1285C12CDA81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{75FAE67F-6FF4-4017-AF05-D2A0ABF1AD74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75FAE67F-6FF4-4017-AF05-D2A0ABF1AD74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75FAE67F-6FF4-4017-AF05-D2A0ABF1AD74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16A59EFC-70F6-44DB-BDE5-1285C12CDA81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16A59EFC-70F6-44DB-BDE5-1285C12CDA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16A59EFC-70F6-44DB-BDE5-1285C12CDA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16A59EFC-70F6-44DB-BDE5-1285C12CDA81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
